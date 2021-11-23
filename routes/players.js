@@ -24,7 +24,8 @@ router.route('/')
             lastName: req.body.lastName,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
-            status: req.body.status
+            status: req.body.status,
+            number: req.body.number
         })
 
         try {

@@ -25,7 +25,10 @@ const PlayerSchema = mongoose.Schema({
         type: String,
         default: 'Inactive'
     },
-
+    number: {
+        type: String,
+        required: true
+    }
 })
 
 module.exports = mongoose.model('Players', PlayerSchema)

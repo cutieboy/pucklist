@@ -78,22 +78,6 @@ async function fetchGameData() {
         }
     })
 
-    // gameObjects.forEach(async (game) => {
-    //     try {
-    //         const response = await fetch('http://localhost:5000/api/games', {
-    //             method: 'POST',
-    //             body: JSON.stringify(game),
-    //             headers: { 'Content-Type': 'application/json' }
-    //         })
-
-    //         const data = await response.json()
-    //         console.log(data)
-    //     } catch(err) {
-    //         console.log({message: err})
-    //     }
-    // })
-
-
     await browser.close()
 }
 
