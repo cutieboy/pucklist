@@ -37,6 +37,10 @@ const GameSchema = mongoose.Schema({
         type: Array,
         required: true
     },
+    isAvailable: {
+        type: Array,
+        required: true
+    },
 })
 
 module.exports = mongoose.model('Games', GameSchema)

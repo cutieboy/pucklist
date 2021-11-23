@@ -59,6 +59,7 @@ async function fetchGameData() {
         gameObjects[i].awayTeam = game[5]
         gameObjects[i].comments = []
         gameObjects[i].isPlaying = []
+        gameObjects[i].isAvailable = []
     })
 
     gameObjects.forEach(async (game, i) => {
