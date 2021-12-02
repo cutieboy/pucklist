@@ -20,8 +20,12 @@ router.route('/')
             division: req.body.division,
             homeTeam: req.body.homeTeam,
             awayTeam: req.body.awayTeam,
+            homeScore: req.body.homeScore,
+            awayScore: req.body.awayScore,
             comments: req.body.comments,
-            isPlaying: req.body.isPlaying
+            isPlaying: req.body.isPlaying,
+            isNotPlaying: req.body.isNotPlaying,
+            isMaybePlaying: req.body.isMaybePlaying
         })
 
         try {
@@ -40,19 +44,29 @@ router.route('/')
         }
     })
 
-router.route('/:id')
+router.route('/:number')
     .get(async (req, res) => {
         try {
-            const game = await Post.findById(req.params.id)
+            const game = await Game.findOne({number: req.params.number})
             res.json(game)
+        } catch(err) {
+            res.json({message: err})
+        }
+    })
+    .patch(async (req, res) => {
+        try {
+            const updatedGame = await Game.findOneAndUpdate({number: req.params.number}, req.body, {
+                new: true
+            })
+            res.json(updatedPlayer)
         } catch(err) {
             res.json({message: err})
         }
     })
     .delete(async (req, res) => {
         try {
-            const removedGame = await Post.remove({ _id: req.params.id })
-            res.json({message: `${req.params.id} has been removed`})
+            const removedGame = await Post.remove({number: req.params.number })
+            res.json({message: `${req.params.number} has been removed`})
         } catch(err) {
             res.json({message: err})
         }

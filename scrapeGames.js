@@ -6,7 +6,7 @@ async function fetchGameData() {
     let API = 'http://localhost:5000/api/games'
 
     const response = await fetch('http://localhost:5000/api/games')
-    const data = await response.json()
+    const currentData = await response.json()
 
     const browser = await puppeteer.launch({
         headless: false,
@@ -41,7 +41,7 @@ async function fetchGameData() {
 
         let gameData = []
         rawGameData.forEach((item) => {
-            if(item.length <= 5 || item.includes('SIAHL') || item.includes('Scoresheet')) return
+            if(item.includes('SIAHL') || item.includes('Scoresheet')) return
             gameData.push(item)
         })
 
@@ -50,20 +50,47 @@ async function fetchGameData() {
 
     gameArray.forEach((game, i) => {
         gameObjects[i] = {}
-        gameObjects[i].number = i + 1
+        gameObjects[i].number = i
         gameObjects[i].date = game[0]
         gameObjects[i].time = game[1]
         gameObjects[i].rink = game[2]
         gameObjects[i].division = game[3]
         gameObjects[i].homeTeam = game[4]
-        gameObjects[i].awayTeam = game[5]
+        gameObjects[i].homeScore = game[5]
+        gameObjects[i].awayTeam = game[6]
+        gameObjects[i].awayScore = game[7]
         gameObjects[i].comments = []
         gameObjects[i].isPlaying = []
-        gameObjects[i].isAvailable = []
+        gameObjects[i].isNotPlaying = []
+        gameObjects[i].isMaybePlaying = []
     })
 
     gameObjects.forEach(async (game, i) => {
-        if(i > data.length) {
+        if(game !== currentData[i]) {
+            const updatedInfo = {
+                date: game.date,
+                time: game.time,
+                rink: game.rink,
+                homeScore: game.homeScore,
+                awayScore: game.awayScore
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/games/${i}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify(updatedInfo),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+
+                const data = await response.json()
+                console.log(data)
+            }   catch(err) {
+                console.log({message: err})
+            }
+            
+        }
+
+        if(i > currentData.length) {
             try {
                 const response = await fetch('http://localhost:5000/api/games', {
                     method: 'POST',

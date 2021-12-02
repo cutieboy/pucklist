@@ -1,56 +1,42 @@
 const mongoose = require('mongoose')
 
-const GameSchema = mongoose.Schema({
-    number: {
+const StandingSchema = mongoose.Schema({
+    team: {
         type: String,
         required: true
     },
-    date: {
+    gp: {
         type: String,
         required: true
     },
-    time: {
+    w: {
         type: String,
         required: true
     },
-    rink: {
+    l: {
         type: String,
         required: true
     },
-    division: {
+    t: {
         type: String,
         required: true
     },
-    homeTeam: {
+    otl: {
         type: String,
         required: true
     },
-    awayTeam: {
+    points: {
         type: String,
         required: true
     },
-    homeScore: {
+    streak: {
         type: String,
+        required: true
     },
-    awayScore: {
+    tieBreaker: {
         type: String,
-    },
-    comments: {
-        type: Array,
-        required: true
-    },
-    isPlaying: {
-        type: Array,
-        required: true
-    },
-    isNotPlaying: {
-        type: Array,
-        required: true
-    },
-    isMaybePlaying: {
-        type: Array,
         required: true
     },
 })
 
-module.exports = mongoose.model('Games', GameSchema)
+module.exports = mongoose.model('Standings', StandingSchema)

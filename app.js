@@ -6,6 +6,7 @@ require('dotenv/config')
 const gameRouter = require('./routes/games')
 const statRouter = require('./routes/stats')
 const playerRouter = require('./routes/players')
+const standingRouter = require('./routes/standings')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(express.json({
 app.use('/api/games', gameRouter)
 app.use('/api/stats', statRouter)
 app.use('/api/players', playerRouter)
+app.use('/api/standings', standingRouter)
 
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION, () => {
