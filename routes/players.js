@@ -24,7 +24,9 @@ router.route('/')
             lastName: req.body.lastName,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
+            usah: req.body.usah,
             status: req.body.status,
+            role: req.body.role,
             number: req.body.number
         })
 
@@ -55,7 +57,7 @@ router.route('/:email')
     })
     .delete(async(req, res) => {
         try {
-            const player = await Player.deleteOne({_id: req.params.id})
+            const player = await Player.deleteOne({email: req.params.email})
             res.json(`${req.params.email} has been deleted`)
         } catch(err) {
             res.json({message: err})
@@ -63,7 +65,7 @@ router.route('/:email')
     })
     .patch(async (req, res) => {
         try {
-            const updatedPlayer = await Player.findOneAndUpdate({_id: req.params.email}, req.body, {
+            const updatedPlayer = await Player.findOneAndUpdate({email: req.params.email}, req.body, {
                 new: true
             })
             res.json(updatedPlayer)

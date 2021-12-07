@@ -17,6 +17,10 @@ const PlayerSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    usah: {
+        type: String,
+        default: ''
+    },
     profilePicture: {
         type: String,
         default: null
@@ -24,6 +28,10 @@ const PlayerSchema = mongoose.Schema({
     status: {
         type: String,
         default: 'Inactive'
+    },
+    role: {
+        type: String,
+        default: 'Player'
     },
     number: {
         type: String,
