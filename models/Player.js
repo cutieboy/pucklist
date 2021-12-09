@@ -25,6 +25,10 @@ const PlayerSchema = mongoose.Schema({
         type: String,
         default: 'Inactive'
     },
+    usah: {
+        type: String,
+        default: ''
+    },
     number: {
         type: String,
         required: true

@@ -25,6 +25,7 @@ router.route('/')
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
             status: req.body.status,
+            usah: req.body.usah,
             number: req.body.number
         })
 
@@ -63,7 +64,7 @@ router.route('/:email')
     })
     .patch(async (req, res) => {
         try {
-            const updatedPlayer = await Player.findOneAndUpdate({_id: req.params.email}, req.body, {
+            const updatedPlayer = await Player.findOneAndUpdate({email: req.params.email}, req.body, {
                 new: true
             })
             res.json(updatedPlayer)
