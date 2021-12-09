@@ -25,6 +25,7 @@ router.route('/')
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
             status: req.body.status,
+            role: req.body.role,
             usah: req.body.usah,
             number: req.body.number
         })

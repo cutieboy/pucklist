@@ -25,6 +25,10 @@ const PlayerSchema = mongoose.Schema({
         type: String,
         default: 'Inactive'
     },
+    role: {
+        type: String,
+        default: 'Player'
+    },
     usah: {
         type: String,
         default: ''
