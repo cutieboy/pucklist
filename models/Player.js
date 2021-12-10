@@ -33,6 +33,13 @@ const PlayerSchema = mongoose.Schema({
         type: String,
         default: 'Player'
     },
+<<<<<<< HEAD
+=======
+    usah: {
+        type: String,
+        default: ''
+    },
+>>>>>>> f5e5de86c0a38e3a5459fe7cda68805d6e1b18d7
     number: {
         type: String,
         required: true
