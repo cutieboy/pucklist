@@ -27,10 +27,7 @@ router.route('/')
             usah: req.body.usah,
             status: req.body.status,
             role: req.body.role,
-<<<<<<< HEAD
-=======
             usah: req.body.usah,
->>>>>>> f5e5de86c0a38e3a5459fe7cda68805d6e1b18d7
             number: req.body.number
         })
 
