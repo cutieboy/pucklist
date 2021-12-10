@@ -66,6 +66,13 @@ router.route('/:email')
     })
     .patch(async (req, res) => {
         try {
+            if(req.body.phoneNumber && req.body.phoneNumber.length !== 10) {
+                return res.status(400).send({message: 'Phone number must be 10 digits'})
+            }
+            if(req.body.number && req.body.number.length > 2) {
+                return res.status(400).send({message: 'Player numbers must be less than 3 digits'})
+            }
+
             const updatedPlayer = await Player.findOneAndUpdate({email: req.params.email}, req.body, {
                 new: true
             })
