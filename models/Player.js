@@ -40,6 +40,10 @@ const PlayerSchema = mongoose.Schema({
     number: {
         type: String,
         required: true
+    },
+    signupSecret: {
+        type: String,
+        required: true
     }
 })
 
