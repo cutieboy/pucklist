@@ -58,14 +58,14 @@ async function fetchGameData() {
 
         gameObjects[i] = {}
         gameObjects[i].number = gameNumber[0]
-        gameObjects[i].date = game[1]
-        gameObjects[i].time = game[2]
-        gameObjects[i].rink = game[3]
-        gameObjects[i].division = game[4]
-        gameObjects[i].homeTeam = game[5]
-        gameObjects[i].homeScore = game[6]
-        gameObjects[i].awayTeam = game[7]
-        gameObjects[i].awayScore = game[8]
+        gameObjects[i].date = game[1].slice(1, -1)
+        gameObjects[i].time = game[2].slice(1, -1)
+        gameObjects[i].rink = game[3].slice(1, -1)
+        gameObjects[i].division = game[4].slice(1, -1)
+        gameObjects[i].homeTeam = game[5].slice(1, -1)
+        gameObjects[i].homeScore = game[6].slice(1, -1)
+        gameObjects[i].awayTeam = game[7].slice(1, -1)
+        gameObjects[i].awayScore = game[8].slice(1, -1)
         gameObjects[i].comments = []
         gameObjects[i].isUndecided = playerData
     })
