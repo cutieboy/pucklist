@@ -41,10 +41,6 @@ const PlayerSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    signupSecret: {
-        type: String,
-        required: true
-    }
 })
 
 module.exports = mongoose.model('Players', PlayerSchema)

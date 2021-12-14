@@ -41,16 +41,23 @@ const GameSchema = mongoose.Schema({
     },
     isPlaying: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
     isNotPlaying: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
     isMaybePlaying: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
+    isUndecided: {
+        type: Array,
+        required: true
+    }
 })
 
 module.exports = mongoose.model('Games', GameSchema)

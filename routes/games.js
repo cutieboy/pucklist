@@ -23,9 +23,7 @@ router.route('/')
             homeScore: req.body.homeScore,
             awayScore: req.body.awayScore,
             comments: req.body.comments,
-            isPlaying: req.body.isPlaying,
-            isNotPlaying: req.body.isNotPlaying,
-            isMaybePlaying: req.body.isMaybePlaying
+            isUndecided: req.body.isUndecided
         })
 
         try {
@@ -58,7 +56,7 @@ router.route('/:number')
             const updatedGame = await Game.findOneAndUpdate({number: req.params.number}, req.body, {
                 new: true
             })
-            res.json(updatedPlayer)
+            res.json(updatedGame)
         } catch(err) {
             res.json({message: err})
         }

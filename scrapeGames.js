@@ -3,13 +3,17 @@ const fetch = require('node-fetch')
 
 async function fetchGameData() {
     let url = 'https://stats.sharksice.timetoscore.com/display-schedule?team=3328&season=51&league=1&stat_class=1'
-    let API = 'http://localhost:5000/api/games'
+    let gamesAPI = 'http://localhost:5000/api/games'
 
-    const response = await fetch('http://localhost:5000/api/games')
+    const response = await fetch(gamesAPI)
     const currentData = await response.json()
 
+    let playerAPI = 'http://localhost:5000/api/players'
+    const playerResponse = await fetch(playerAPI)
+    const playerData = await playerResponse.json()
+
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         defaultViewport: null,
     })
 
@@ -37,7 +41,6 @@ async function fetchGameData() {
 
     tables[0].forEach((table) => {
         const rawGameData = table.split('\t')
-        rawGameData.shift()
 
         let gameData = []
         rawGameData.forEach((item) => {
@@ -48,21 +51,23 @@ async function fetchGameData() {
         gameArray.push(gameData)
     })
 
+    console.log(playerData)
+
     gameArray.forEach((game, i) => {
+        let gameNumber = game[0].split('*')
+
         gameObjects[i] = {}
-        gameObjects[i].number = i
-        gameObjects[i].date = game[0]
-        gameObjects[i].time = game[1]
-        gameObjects[i].rink = game[2]
-        gameObjects[i].division = game[3]
-        gameObjects[i].homeTeam = game[4]
-        gameObjects[i].homeScore = game[5]
-        gameObjects[i].awayTeam = game[6]
-        gameObjects[i].awayScore = game[7]
+        gameObjects[i].number = gameNumber[0]
+        gameObjects[i].date = game[1]
+        gameObjects[i].time = game[2]
+        gameObjects[i].rink = game[3]
+        gameObjects[i].division = game[4]
+        gameObjects[i].homeTeam = game[5]
+        gameObjects[i].homeScore = game[6]
+        gameObjects[i].awayTeam = game[7]
+        gameObjects[i].awayScore = game[8]
         gameObjects[i].comments = []
-        gameObjects[i].isPlaying = []
-        gameObjects[i].isNotPlaying = []
-        gameObjects[i].isMaybePlaying = []
+        gameObjects[i].isUndecided = playerData
     })
 
     gameObjects.forEach(async (game, i) => {

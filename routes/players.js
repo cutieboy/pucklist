@@ -28,7 +28,7 @@ router.route('/')
             status: req.body.status,
             role: req.body.role,
             usah: req.body.usah,
-            number: req.body.number
+            number: req.body.number,
         })
 
         try {
