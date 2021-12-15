@@ -20,6 +20,21 @@ async function fetchGameData() {
     const page = await browser.newPage()
     await page.goto(url, { waitUntil: 'networkidle2' })
 
+    let months = {
+        Jan: '1',
+        Feb: '2',
+        Mar: '3',
+        Apr: '4',
+        May: '5',
+        Jun: '6',
+        Jul: '7',
+        Aug: '8',
+        Sep: '9',
+        Oct: '10',
+        Nov: '11',
+        Dec: '12'
+    }
+
     let gameArray = []
     let gameObjects = []
 
@@ -56,9 +71,13 @@ async function fetchGameData() {
     gameArray.forEach((game, i) => {
         let gameNumber = game[0].split('*')
 
+        let dateSplit = game[1].slice(1, -1).split(' ')
+        //TODO: Find a way to determine which year the game is in
+        let formatDate = dateSplit[0] + ' ' + months[dateSplit[1]] + '/' + dateSplit[2] + '/' + '2021'
+
         gameObjects[i] = {}
         gameObjects[i].number = gameNumber[0]
-        gameObjects[i].date = game[1].slice(1, -1)
+        gameObjects[i].date = formatDate
         gameObjects[i].time = game[2].slice(1, -1)
         gameObjects[i].rink = game[3].slice(1, -1)
         gameObjects[i].division = game[4].slice(1, -1)
