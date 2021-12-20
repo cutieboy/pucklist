@@ -100,7 +100,7 @@ async function fetchGameData() {
             }
 
             try {
-                const response = await fetch(`http://localhost:5000/api/games/${i}`, {
+                const response = await fetch(`http://localhost:5000/api/games/${game.number}`, {
                     method: 'PATCH',
                     body: JSON.stringify(updatedInfo),
                     headers: { 'Content-Type': 'application/json' }
