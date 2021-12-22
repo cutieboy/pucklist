@@ -5,9 +5,9 @@ Pucklist is a private hockey team management application built for my hockey tea
 ## Technologies
 
 • React\
+• React Context API\
 • Express (NodeJS)\
 • Firebase (Auth)\
 • MongoDB\
-• React Context API\
 • Framer Motion\
 • Puppeteer (Web Scraper for Game Data)
